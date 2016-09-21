@@ -46,9 +46,11 @@ window.addEventListener("keydown", function (event) {
 		
 		Actuator.movetile(ppos.X, ppos.Y, Game.tileZ.X, Game.tileZ.Y);
 		Actuator.updatemoves (Game.moves);
+        
+         
 		if (Game.check() == 1)
 		{
-			alert ("gg wp");
+            Mess_State('block');
 			Game.make_new();
 			Actuator.actuate(Game);
 			Actuator.updatemoves(Game.moves);
@@ -56,8 +58,20 @@ window.addEventListener("keydown", function (event) {
 	}
 });
 
+function Mess_State (state)
+{
+    var game_msg = document.getElementById("mess");
+    game_msg.style.display = state;
+}
+
 window.onload = function () {
 	Game.make_new();
 	Actuator.actuate(Game);
+    btn_new_game = document.getElementById('new_game');
+    btn_new_game.onclick = function() {
+        Game.make_new();
+        Actuator.actuate(Game);
+        Mess_State('none');
+    }
 }
 
