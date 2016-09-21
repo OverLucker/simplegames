@@ -36,7 +36,15 @@ window.addEventListener("keydown", function (event) {
 		37 : { dx : 1, dy : 0}, // left
 		38 : { dx : 0, dy : 1}, // up
 		39 : { dx : -1, dy : 0 }, // right
-		40 : { dx : 0, dy : -1 }  // down	
+		40 : { dx : 0, dy : -1 },  // down
+        75 : { dx : 1, dy : 0}, // Vim up
+        76 : { dx : 0, dy : 1}, // Vim right
+        74 : { dx : -1, dy : 0 }, // Vim down
+        72 : { dx : 0, dy : -1 }, // Vim left        
+        87 : { dx : 1, dy : 0}, // W
+        68 : { dx : 0, dy : 1}, // D
+        83 : { dx : -1, dy : 0 }, // S
+        65 : { dx : 0, dy : -1 }  // A
 	}
 	if (action [event.which] !== undefined)
 	{
