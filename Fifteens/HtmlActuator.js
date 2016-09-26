@@ -18,7 +18,7 @@ Actuator.actuate = function (game)
 	{
 		for (j = 0; j < game.grid.Y; ++j)
 		{
-			var tile = document.getElementById(game.grid.rows[j][i]);
+			var tile = document.getElementById("t" + game.grid.rows[j][i]);
 			var cls = ["tile", "tile-position-" + j + "-" + i];
 			tile.setAttribute("class", cls.join(" "));
 		}
@@ -40,14 +40,14 @@ window.addEventListener("keydown", function (event) {
 		38 : { dx : 0, dy : 1}, // up
 		39 : { dx : -1, dy : 0 }, // right
 		40 : { dx : 0, dy : -1 },  // down
-        // 75 : { dx : 1, dy : 0}, // Vim up
-        // 76 : { dx : 0, dy : 1}, // Vim right
-        // 74 : { dx : -1, dy : 0 }, // Vim down
-        // 72 : { dx : 0, dy : -1 }, // Vim left        
-        // 87 : { dx : 1, dy : 0}, // W
-        // 68 : { dx : 0, dy : 1}, // D
-        // 83 : { dx : -1, dy : 0 }, // S
-        // 65 : { dx : 0, dy : -1 }  // A
+        75 : { dx : 0, dy : 1}, // Vim up
+        76 : { dx : -1, dy : 0 }, // Vim right
+        74 : { dx : 0, dy : -1 }, // Vim down
+        72 : { dx : 1, dy : 0}, // Vim left        
+        87 : { dx : 0, dy : 1}, // W
+        68 : { dx : -1, dy : 0 }, // D
+        83 : { dx : 0, dy : -1 }, // S
+        65 : { dx : 1, dy : 0}  // A
 	}
 	if (action [event.which] !== undefined)
 	{
