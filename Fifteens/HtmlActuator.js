@@ -36,10 +36,10 @@ window.addEventListener("keydown", function (event) {
 	var action = 
 	{
         13 : 13,
-		37 : { dx : 1, dy : 0}, // left
-		38 : { dx : 0, dy : 1}, // up
-		39 : { dx : -1, dy : 0 }, // right
-		40 : { dx : 0, dy : -1 },  // down
+        37 : { dx : 1, dy : 0}, // left
+        38 : { dx : 0, dy : 1}, // up
+        39 : { dx : -1, dy : 0 }, // right
+        40 : { dx : 0, dy : -1 },  // down
         75 : { dx : 0, dy : 1}, // Vim up
         76 : { dx : -1, dy : 0 }, // Vim right
         74 : { dx : 0, dy : -1 }, // Vim down
