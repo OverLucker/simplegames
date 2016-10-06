@@ -49,6 +49,7 @@ window.addEventListener("keydown", function (event) {
         83 : { dx : 0, dy : -1 }, // S
         65 : { dx : 1, dy : 0}  // A
 	}
+
 	if (action [event.which] !== undefined)
 	{
         if (action[event.which] == 13)
@@ -74,6 +75,13 @@ window.addEventListener("keydown", function (event) {
 	}
 });
 
+var touch = {
+    start : 0,
+    end: 0
+};
+
+
+
 function Mess_State (state)
 {
     var game_msg = document.getElementById("mess");
@@ -90,5 +98,12 @@ window.onload = function () {
 		Actuator.updatemoves(Game.moves);
         Mess_State('none');
     }
+    document.querySelectorAll('.tile').each(function() {
+        this.addEventListener("touchstart", function(event) {
+            if (event.touches.length > 1)
+                return;
+            alert(event.touches[0].clientX, ' + ', event.touches[0].clientY);
+        }, false);
+    });
 }
 
