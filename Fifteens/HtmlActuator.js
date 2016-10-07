@@ -76,8 +76,14 @@ window.addEventListener("keydown", function (event) {
 });
 
 var touch = {
-    start : 0,
-    end: 0
+    start : {
+        X : 0,
+        Y : 0
+    },
+    end: {
+        X : 0,
+        Y : 0
+    }
 };
 
 
@@ -97,13 +103,81 @@ window.onload = function () {
 		Actuator.actuate(Game);
 		Actuator.updatemoves(Game.moves);
         Mess_State('none');
-    }
-    document.querySelectorAll('.tile').each(function() {
-        this.addEventListener("touchstart", function(event) {
-            if (event.touches.length > 1)
+    };
+    
+    var el = window;
+    el.addEventListener("touchstart", function(event) {
+        if (!window.navigator.msPointerEnabled && event.touches.length > 1)
+            return;
+        if (window.navigator.msPointerEnabled)
+        {
+            touch.start.X = event.PageX;
+            touch.start.Y = event.PageY;
+        }
+        else
+        {
+            touch.start.X = event.touches[0].clientX;
+            touch.start.Y = event.touches[0].clientY;
+        }
+        event.preventDefault();
+    }, false);
+    
+    el.addEventListener("touchmove", function(event) {
+        event.preventDefault();
+    }, false);
+    
+    el.addEventListener("touchend", function(event) {
+        if (!window.navigator.msPointerEnabled && event.touches.length > 1)
+            return;
+        if (window.navigator.msPointerEnabled)
+        {
+            touch.end.X = event.PageX;
+            touch.end.Y = event.PageY;
+        }
+        else
+        {
+            touch.end.X = event.changedTouches[0].clientX;
+            touch.end.Y = event.changedTouches[0].clientY;
+        }
+        
+        var dx = touch.start.X - touch.end.X;
+        var absDX = Math.abs(dx);
+        
+        var dy = touch.start.Y - touch.end.Y;
+        var absDY = Math.abs(dy);
+        // сдвинулись на достаточное расстояние
+        if (Math.max (absDX, absDY) > 10)
+        {
+            if (absDX > absDY)
+            {
+                if (dx > 0)
+                    dx = 1;
+                else
+                    dx = -1;
+                var npos = {X : dx, Y : 0};
+            }
+            else
+            {
+                if (dy > 0)
+                    dy = 1;
+                else
+                    dy = -1;
+                var npos = {X : 0, Y : dy};
+            }
+            var ppos = { X : Game.tileZ.X, Y : Game.tileZ.Y};
+            if (Game.movetile(npos.X, npos.Y))
                 return;
-            alert(event.touches[0].clientX, ' + ', event.touches[0].clientY);
-        }, false);
-    });
+            
+            Actuator.movetile(ppos.X, ppos.Y, npos.X, npos.Y);
+            Actuator.updatemoves (Game.moves);
+            
+             
+            if (Game.check() == 1)
+            {
+                Mess_State('block');
+                
+            }
+        }
+    }, false);
 }
 
