@@ -105,6 +105,13 @@ window.onload = function () {
         Mess_State('none');
     };
     
+    btn_new_game.addEventListener("touchstart", function(event) {
+        Game.make_new();
+		Actuator.actuate(Game);
+		Actuator.updatemoves(Game.moves);
+        Mess_State('none');
+    });
+    
     var el = window;
     el.addEventListener("touchstart", function(event) {
         if (!window.navigator.msPointerEnabled && event.touches.length > 1)
