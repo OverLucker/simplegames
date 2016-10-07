@@ -168,7 +168,7 @@ window.onload = function () {
             if (Game.movetile(npos.X, npos.Y))
                 return;
             
-            Actuator.movetile(ppos.X, ppos.Y, npos.X, npos.Y);
+            Actuator.movetile(ppos.X, ppos.Y, Game.tileZ.X, Game.tileZ.Y);
             Actuator.updatemoves (Game.moves);
             
              
