@@ -171,8 +171,10 @@
 {
 	margin: 10px;
 	position : absolute;
-	transition-property : transform;
-    transition-duration : 0.1s;
+    -webkit-transition: transform 200ms ease-out;
+    -moz-transition: transform 200ms ease-out;
+    -o-transition: transform 200ms ease-out;
+	transition : transform 200ms ease-out;
 	display : block;
 	width : 100px;
 	height : 100px;

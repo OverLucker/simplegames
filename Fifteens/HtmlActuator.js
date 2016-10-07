@@ -114,7 +114,8 @@ window.onload = function () {
     
     var el = window;
     el.addEventListener("touchstart", function(event) {
-        if (!window.navigator.msPointerEnabled && event.touches.length > 1)
+        if ((!window.navigator.msPointerEnabled && event.touches.length > 1) ||
+            event.targetTouches.length > 1)
             return;
         if (window.navigator.msPointerEnabled)
         {
